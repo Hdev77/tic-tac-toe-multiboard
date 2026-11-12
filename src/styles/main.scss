@@ -1,0 +1,10 @@
+@use "./components/game-board";
+@use "./base/reset";
+@use "./abstracts/mixins";
+@use "./base/typography";
+@use "./abstracts/variables";
+@use "./components/game-controls";
+
+@use "./components/modal";
+@use "./layout/container";
+@use "./components/score-board";

@@ -1,0 +1,12 @@
+@use "../abstracts/variables" as *;
+
+body {
+  font-family: $font-main;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}

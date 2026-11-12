@@ -1,0 +1,105 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.game-board {
+  display: grid;
+  gap: 8px;
+  background-color: $color-surface;
+  padding: 12px;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @include respond-to("tablet") {
+    gap: 12px;
+    padding: 16px;
+    max-width: 440px;
+  }
+
+  &--size-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  &--size-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+
+    @include respond-to("tablet") {
+      gap: 8px;
+    }
+  }
+
+  &--size-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+
+    @include respond-to("tablet") {
+      gap: 6px;
+    }
+  }
+
+  &__cell {
+    @include flex-center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba($color-bg, 0.6);
+    border-radius: $border-radius-sm;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    user-select: none;
+    overflow: hidden;
+
+    @include respond-to("tablet") {
+      font-size: 2.2rem;
+      border-radius: $border-radius-md;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $color-surface-hover;
+    }
+
+    &--x {
+      color: $color-primary;
+      text-shadow: $shadow-glow-x;
+    }
+
+    &--o {
+      color: $color-secondary;
+      text-shadow: $shadow-glow-o;
+    }
+
+    &--winning {
+      background-color: rgba($color-accent, 0.2);
+      border: 2px solid $color-accent;
+      animation: pulse 1s infinite alternate;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,103 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($color-bg, 0.75);
+  backdrop-filter: blur(8px);
+  @include flex-center;
+  z-index: 100;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  background-color: $color-surface;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-lg;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @include respond-to("tablet") {
+    max-width: 380px;
+    padding: 2.5rem 2rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-text-muted;
+    margin-bottom: 0.5rem;
+  }
+
+  &__message {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1.75rem;
+
+    &--winner-player {
+      color: $color-primary;
+      text-shadow: $shadow-glow-x;
+    }
+
+    &--winner-ai {
+      color: $color-secondary;
+      text-shadow: $shadow-glow-o;
+    }
+
+    &--tie {
+      color: $color-accent;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $color-bg;
+    background-color: $color-accent;
+    border-radius: $border-radius-md;
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    transition: $transition-smooth;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.45);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

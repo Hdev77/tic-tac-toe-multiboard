@@ -1,0 +1,70 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 1.5rem auto;
+
+  @include respond-to("tablet") {
+    max-width: 440px;
+    gap: 16px;
+    margin-bottom: 2rem;
+  }
+
+  &__card {
+    @include flex-center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: $border-radius-md;
+    background-color: $color-surface;
+    border: 2px solid transparent;
+    transition: $transition-smooth;
+    user-select: none;
+
+    @include respond-to("tablet") {
+      padding: 14px;
+    }
+    &--player {
+      color: $color-primary;
+    }
+    &--ties {
+      color: $color-accent;
+    }
+    &--ai {
+      color: $color-secondary;
+    }
+    &--active {
+      border-color: currentColor;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+
+    @include respond-to("tablet") {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+  }
+
+  &__value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1;
+
+    @include respond-to("tablet") {
+      font-size: 1.6rem;
+    }
+  }
+}
